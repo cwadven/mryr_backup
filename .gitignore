@@ -111,6 +111,9 @@ celerybeat-schedule
 # mkdocs documentation
 /site
 
+# Frontend
+frontend/node_modules
+
 # mypy
 .mypy_cache/
 .dmypy.json
