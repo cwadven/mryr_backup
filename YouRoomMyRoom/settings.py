@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     # CORS
     'corsheaders',
+    # API 문서 자동화
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
