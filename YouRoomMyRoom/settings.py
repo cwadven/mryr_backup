@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'corsheaders',
     # API 문서 자동화
     'drf_yasg',
+
+    # ★ 자유게시판 (꿀팁 / 사기정보관련)
+    'Board',
 ]
 
 MIDDLEWARE = [
