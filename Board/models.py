@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 
 class TimeStampedModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -15,7 +15,7 @@ class Board(TimeStampedModel):
     * To do
     1. author -> User 외래키로 변경
     """
-    author = models.CharField(max_length=20, blank=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=20)
     content = models.TextField()
 
