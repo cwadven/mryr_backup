@@ -39,13 +39,13 @@ class Comments(TimeStampedModel):
     * To do
     1. creator -> User 외래키로 변경
     """
-    creator = models.CharField(max_length=20, null=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     message = models.TextField()
     post = models.ForeignKey(
         Board, related_name='comments', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} - {}'.format(self.creator, self.message)
+        return '{} - {}'.format(self.author, self.message)
 
 
 class Likes(TimeStampedModel):
@@ -54,9 +54,9 @@ class Likes(TimeStampedModel):
     * To do
     1. creator -> User 외래키로 변경
     """
-    creator = models.CharField(max_length=20, null=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     post = models.ForeignKey(
         Board, related_name='likes', on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{} - {}'.format(self.creator, self.post)
+        return '{} - {}'.format(self.author, self.post)

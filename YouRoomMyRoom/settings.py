@@ -38,6 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #로그인 API pip isntall django-rest-auth
+    'rest_framework.authtoken',
+    'rest_auth',
+
+    # 회원가입 API pip install django-allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
     # Django REST framework
     'rest_framework',
     # CORS
@@ -48,6 +58,8 @@ INSTALLED_APPS = [
     # ★ 자유게시판 (꿀팁 / 사기정보관련)
     'Board',
 ]
+
+SITE_ID = 1 # 이걸 추가해야 기본적인 로그인 창도 잘 다시됨!
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,6 +104,12 @@ DATABASES = {
 }
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.BasicAuthentication', #베이직도 가능하고
+        # for browsable api view usage
+        'rest_framework.authentication.TokenAuthentication', #토큰도 가능하게 일단
+        'rest_framework.authentication.SessionAuthentication',
+    ],
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [

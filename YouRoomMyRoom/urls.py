@@ -39,6 +39,10 @@ urlpatterns = [
     path('', include('Board.urls')),
     path('api-auth/', include('rest_framework.urls')),
 
+    #로그인 및 회원가입
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+
     # Auto DRF API docs
     url(r'^swagger(?P<format>\.json|\.yaml)$',
         schema_view.without_ui(cache_timeout=0), name='schema-json'),

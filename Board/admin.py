@@ -12,7 +12,7 @@ admin.site.register(Board, BoardAdmin)
 
 class CommentsAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'creator', 'message', 'created_at', 'updated_at')
+    list_display = ('id', 'author', 'message', 'created_at', 'updated_at')
 
 
 admin.site.register(Comments, CommentsAdmin)
@@ -20,7 +20,7 @@ admin.site.register(Comments, CommentsAdmin)
 
 class LikesAdmin(admin.ModelAdmin):
 
-    list_display = ('id', 'creator', 'post')
+    list_display = ('id', 'author', 'post')
 
 
 admin.site.register(Likes, LikesAdmin)
