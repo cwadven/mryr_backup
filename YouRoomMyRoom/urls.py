@@ -20,6 +20,7 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 import Board.urls
+from rest_framework.authtoken.views import obtain_auth_token  # <-- Here
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -42,6 +43,8 @@ urlpatterns = [
     #로그인 및 회원가입
     url(r'^rest-auth/', include('rest_auth.urls')),
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),  # <-- 일단 자동으로 토큰 생성을 만들지 못해서 임시로 만듦
+
 
     # Auto DRF API docs
     url(r'^swagger(?P<format>\.json|\.yaml)$',

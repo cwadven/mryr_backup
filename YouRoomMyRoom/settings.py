@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     # ★ 자유게시판 (꿀팁 / 사기정보관련)
     'Board',
     'Account',
+    'allauth.socialaccount', #socialaccount가 회원가입 필드를 추가하려고 하니 이거 필요하다고 함...
+    
 ]
 
 SITE_ID = 1 # 이걸 추가해야 기본적인 로그인 창도 잘 다시됨!
@@ -108,7 +110,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.BasicAuthentication', #베이직도 가능하고
         # for browsable api view usage
-        #'rest_framework.authentication.TokenAuthentication', #토큰도 가능하게 일단
+        'rest_framework.authentication.TokenAuthentication', #토큰도 가능하게 일단
         'rest_framework.authentication.SessionAuthentication',
     ],
     # Use Django's standard `django.contrib.auth` permissions,
@@ -118,14 +120,16 @@ REST_FRAMEWORK = {
     ],
 }
 
-AUTH_USER_MODEL = 'Account.Profile'
+#AUTH_USER_MODEL = 'Account.Profile' #유저 모델로 사용하기
 
 # REST_AUTH_SERIALIZERS = {
 #     'USER_DETAILS_SERIALIZER': 'Account.serializer.ProfileSerializer',
 # }
 
-REST_AUTH_REGISTER_SERIALIZERS = { 'REGISTER_SERIALIZER': 'Account.serializer.ProfileSerializer', }
+REST_AUTH_REGISTER_SERIALIZERS = { 'REGISTER_SERIALIZER': 'Account.serializer.ProfileSerializer', } #회원가입용 SERIALIZER
 
+ACCOUNT_ADAPTER = 'Account.adapter.CustomAccountAdapter' #마지막으로 회원가입용 SERIALIZER를 적용시켜주기 위한 단계
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
