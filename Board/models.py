@@ -47,7 +47,6 @@ class Comments(TimeStampedModel):
     def __str__(self):
         return '{} - {}'.format(self.author, self.message)
 
-
 class Likes(TimeStampedModel):
     """ 좋아요 테이블
 
