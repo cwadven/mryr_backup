@@ -120,7 +120,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-#AUTH_USER_MODEL = 'Account.Profile' #유저 모델로 사용하기
+AUTH_USER_MODEL = 'Account.Profile' #유저 모델로 사용하기
 
 # REST_AUTH_SERIALIZERS = {
 #     'USER_DETAILS_SERIALIZER': 'Account.serializer.ProfileSerializer',
@@ -130,6 +130,7 @@ REST_AUTH_REGISTER_SERIALIZERS = { 'REGISTER_SERIALIZER': 'Account.serializer.Pr
 
 ACCOUNT_ADAPTER = 'Account.adapter.CustomAccountAdapter' #마지막으로 회원가입용 SERIALIZER를 적용시켜주기 위한 단계
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
