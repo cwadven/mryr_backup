@@ -27,6 +27,17 @@ class BasketViewset(viewsets.ModelViewSet): ########get 할때 특정 사람과 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                       IsOwnerOrReadOnly,) #로그인된 사람은 쓸 수 있고 대신, 자기만의 것은 자기만 수정 가능  --> permissions.py 에서 class 만들어서 적용
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        try:
+            qs = qs.filter(author=self.request.user)
+            if qs:
+                return qs
+            else:
+                return None
+        except:
+            return None
+
     def perform_create(self, serializer): #자동으로 자기 자신 author에 저장 되도록
         qs = super().get_queryset()
         qs = qs.filter(author=self.request.user, post=serializer.validated_data["post"]) #해당 게시판에 있을 경우 serializer.validated_data를 통해서 가져온 속성을 체크할 수 있다
