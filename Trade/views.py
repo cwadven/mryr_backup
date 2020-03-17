@@ -20,7 +20,7 @@ class TBoardViewset(viewsets.ModelViewSet):
     def perform_update(self, serializer): #자동으로 자기 자신 author에 저장 되도록
         serializer.save(author=self.request.user)
 
-class BasketViewset(viewsets.ModelViewSet):
+class BasketViewset(viewsets.ModelViewSet): ########get 할때 특정 사람과 특정 게시판만 필터링 되도록 추후에 추가
     queryset = Basket.objects.all()
     serializer_class = BasketSerializer
 
