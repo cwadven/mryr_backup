@@ -20,12 +20,23 @@ class TBoardViewset(viewsets.ModelViewSet):
     def perform_update(self, serializer): #자동으로 자기 자신 author에 저장 되도록
         serializer.save(author=self.request.user)
 
-class BasketViewset(viewsets.ModelViewSet):
+class BasketViewset(viewsets.ModelViewSet): ########get 할때 특정 사람과 특정 게시판만 필터링 되도록 추후에 추가
     queryset = Basket.objects.all()
     serializer_class = BasketSerializer
 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                       IsOwnerOrReadOnly,) #로그인된 사람은 쓸 수 있고 대신, 자기만의 것은 자기만 수정 가능  --> permissions.py 에서 class 만들어서 적용
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        try:
+            qs = qs.filter(author=self.request.user)
+            if qs:
+                return qs
+            else:
+                return None
+        except:
+            return None
 
     def perform_create(self, serializer): #자동으로 자기 자신 author에 저장 되도록
         qs = super().get_queryset()
