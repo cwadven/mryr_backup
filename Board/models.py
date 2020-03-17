@@ -49,7 +49,6 @@ class Comments(TimeStampedModel):
 
 class Likes(TimeStampedModel):
     """ 좋아요 테이블
-
     * To do
     1. creator -> User 외래키로 변경
     """

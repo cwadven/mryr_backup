@@ -20,6 +20,7 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 import Board.urls
+import Trade.urls
 from rest_framework.authtoken.views import obtain_auth_token  # <-- Here
 
 schema_view = get_schema_view(
@@ -37,7 +38,8 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('Board.urls')),
+    path('', include('Trade.urls')),
+    path('board/', include('Board.urls')),
     path('api-auth/', include('rest_framework.urls')),
 
     #로그인 및 회원가입

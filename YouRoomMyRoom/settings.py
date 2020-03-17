@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     # ★ 자유게시판 (꿀팁 / 사기정보관련)
     'Board',
     'Account',
+    'Trade',
     'allauth.socialaccount', #socialaccount가 회원가입 필드를 추가하려고 하니 이거 필요하다고 함...
     
 ]
