@@ -7,12 +7,17 @@ from .permissions import IsOwnerOrReadOnly
 # Create your views here.
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import filters
+
 
 class TBoardViewset(viewsets.ModelViewSet):
     queryset = TBoard.objects.all()
     serializer_class = TBoardSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                       IsOwnerOrReadOnly,) #로그인된 사람은 쓸 수 있고 대신, 자기만의 것은 자기만 수정 가능  --> permissions.py 에서 class 만들어서 적용
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ('title',)
+    ordering_fields = '__all__'
 
     def perform_create(self, serializer): #자동으로 자기 자신 author에 저장 되도록
         serializer.save(author=self.request.user)
