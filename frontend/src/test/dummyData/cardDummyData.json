@@ -1,0 +1,128 @@
+/*
+매몰 카드 
+{
+    imageSrc:String,
+    houseType:String,
+    paymentMethods:String,
+    price:Number,
+    deposit:Number,
+    Options:{
+        ....,
+    },
+}
+*/
+
+[
+    {
+        "imageSrc":"test/dummyImage/image1",
+        "houseType":"원룸",
+        "paymentMethods":"전세",
+        "price":"39",
+        "deposit":"100",
+        "options":{
+            "floor":"5",
+            "area":"46.28",
+            "Heating":"난로",
+            "Furnitures":["나무","오이","수박","사과","ㅋㅋ","테스트","!~!@"]
+        },
+        "description":"투자금 1조원 대박나는 수익 웹서비스 등장 로렘 입슘 달러 싯 어멧 콘시튜럴 메디피싱 엘릿 세드 애 잇슈모드"
+    },
+    {
+        "imageSrc":"test/dummyImage/image",
+        "houseType":"원룸",
+        "paymentMethods":"전세",
+        "price":"30",
+        "deposit":"120",
+        "options":{
+            "floor":"5",
+            "area":"46.28",
+            "Heating":"난로",
+            "Furnitures":["나무","오이","수박","사과","ㅋㅋ","테스트","!~!@"]
+        },
+        "description":"투자금 1조원 대박나는 수익 웹서비스 등장 로렘 입슘 달러 싯 어멧 콘시튜럴 메디피싱 엘릿 세드 애 잇슈모드"
+    },
+    {
+        "imageSrc":"test/dummyImage/image",
+        "houseType":"원룸",
+        "paymentMethods":"전세",
+        "price":"1",
+        "deposit":"130",
+        "options":{
+            "floor":"5",
+            "area":"46.28",
+            "Heating":"난로",
+            "Furnitures":["나무","오이","수박","사과","ㅋㅋ","테스트","!~!@"]
+        },
+        "description":"투자금 1조원 대박나는 수익 웹서비스 등장 로렘 입슘 달러 싯 어멧 콘시튜럴 메디피싱 엘릿 세드 애 잇슈모드"
+    },
+    {
+        "imageSrc":"test/dummyImage/image",
+        "houseType":"투룸",
+        "paymentMethods":"월세",
+        "price":"2",
+        "deposit":"140",
+        "options":{
+            "floor":"5",
+            "area":"46.28",
+            "Heating":"난로",
+            "Furnitures":["나무","오이","수박","사과","ㅋㅋ","테스트","!~!@"]
+        },
+        "description":"투자금 1조원 대박나는 수익 웹서비스 등장 로렘 입슘 달러 싯 어멧 콘시튜럴 메디피싱 엘릿 세드 애 잇슈모드"
+    },
+    {
+        "imageSrc":"test/dummyImage/image",
+        "houseType":"투룸",
+        "paymentMethods":"월세",
+        "price":"3",
+        "deposit":"150",
+        "options":{
+            "floor":"5",
+            "area":"46.28",
+            "Heating":"난로",
+            "Furnitures":["나무","오이","수박","사과","ㅋㅋ","테스트","!~!@"]
+        },
+        "description":"투자금 1조원 대박나는 수익 웹서비스 등장 로렘 입슘 달러 싯 어멧 콘시튜럴 메디피싱 엘릿 세드 애 잇슈모드"
+    },
+    {
+        "imageSrc":"test/dummyImage/image",
+        "houseType":"투룸",
+        "paymentMethods":"월세",
+        "price":"4",
+        "deposit":"160",
+        "options":{
+            "floor":"5",
+            "area":"46.28",
+            "Heating":"난로",
+            "Furnitures":["나무","오이","수박","사과","ㅋㅋ","테스트","!~!@"]
+        },
+        "description":"투자금 1조원 대박나는 수익 웹서비스 등장 로렘 입슘 달러 싯 어멧 콘시튜럴 메디피싱 엘릿 세드 애 잇슈모드"
+    },
+    {
+        "imageSrc":"test/dummyImage/image",
+        "houseType":"쓰리룸",
+        "paymentMethods":"월세",
+        "price":"5",
+        "deposit":"170",
+        "options":{
+            "floor":"5",
+            "area":"46.28",
+            "Heating":"난로",
+            "Furnitures":["나무","오이","수박","사과","ㅋㅋ","테스트","!~!@"]
+        },
+        "description":"투자금 1조원 대박나는 수익 웹서비스 등장 로렘 입슘 달러 싯 어멧 콘시튜럴 메디피싱 엘릿 세드 애 잇슈모드"
+    },
+    {
+        "imageSrc":"test/dummyImage/image",
+        "houseType":"오피스텔",
+        "paymentMethods":"연세",
+        "price":"6",
+        "deposit":"180",
+        "options":{
+            "floor":"5",
+            "area":"46.28",
+            "Heating":"난로",
+            "Furnitures":["나무","오이","수박","사과","ㅋㅋ","테스트","!~!@"]
+        },
+        "description":"투자금 1조원 대박나는 수익 웹서비스 등장 로렘 입슘 달러 싯 어멧 콘시튜럴 메디피싱 엘릿 세드 애 잇슈모드"
+    }
+]
