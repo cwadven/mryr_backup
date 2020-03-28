@@ -40,6 +40,7 @@ class Board_CommentsViewset(viewsets.ModelViewSet):
 class Board_LikessViewset(viewsets.ModelViewSet): ########get 할때 특정 사람과 특정 게시판만 필터링 되도록 추후에 추가
     queryset = Likes.objects.all()
     serializer_class = LikesSerializer
+    paginator = None 
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                       IsOwnerOrReadOnly,) #로그인된 사람은 쓸 수 있고 대신, 자기만의 것은 자기만 수정 가능  --> permissions.py 에서 class 만들어서 적용
 
@@ -48,6 +49,7 @@ class Board_LikessViewset(viewsets.ModelViewSet): ########get 할때 특정 사�
         try:
             qs = qs.filter(author=self.request.user)
             if qs:
+                paginator = True 
                 return qs
             else:
                 return None
