@@ -10,6 +10,7 @@ router = DefaultRouter() #view에 있는 함수(클래스를 가져오기 위해
 router.register('Trade', views.TBoardViewset)
 router.register('Trade_Basket', views.BasketViewset)
 
+
 urlpatterns = [
     path('', include(router.urls)),
 ]

@@ -28,15 +28,16 @@ class TBoardViewset(viewsets.ModelViewSet):
 class BasketViewset(viewsets.ModelViewSet): ########get 할때 특정 사람과 특정 게시판만 필터링 되도록 추후에 추가
     queryset = Basket.objects.all()
     serializer_class = BasketSerializer
-
+    paginator = None
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
                       IsOwnerOrReadOnly,) #로그인된 사람은 쓸 수 있고 대신, 자기만의 것은 자기만 수정 가능  --> permissions.py 에서 class 만들어서 적용
 
-    def get_queryset(self):
+    def get_queryset(self): #해당 유저의 basket을 볼 수 가 있다 (pagination 으로 인한 오류 수정)
         qs = super().get_queryset()
         try:
             qs = qs.filter(author=self.request.user)
             if qs:
+                paginator = True 
                 return qs
             else:
                 return None
@@ -60,3 +61,15 @@ class BasketViewset(viewsets.ModelViewSet): ########get 할때 특정 사람과 
             return Response(status=status.HTTP_404_NOT_FOUND) #추후에 에러 추가 필요 !!!!!!!!!!!!!!!
         else:
             serializer.save(author=self.request.user)
+
+# class TOptionViewset(viewsets.ModelViewSet):
+#     queryset = Option.objects.all()
+#     serializer_class = OptionSerializer
+#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,
+#                       IsOwnerOrReadOnly,) #로그인된 사람은 쓸 수 있고 대신, 자기만의 것은 자기만 수정 가능  --> permissions.py 에서 class 만들어서 적용
+    
+#     # def perform_create(self, serializer): #자동으로 자기 자신 author에 저장 되도록
+#     #     serializer.save(post=serializer.validated_data["post"])
+
+#     # def perform_update(self, serializer): #자동으로 자기 자신 author에 저장 되도록
+#     #     serializer.save(post=serializer.validated_data["post"])
