@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -111,7 +111,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.BasicAuthentication', #베이직도 가능하고
         # for browsable api view usage
-        'rest_framework.authentication.TokenAuthentication', #토큰도 가능하게 일단
+        #'rest_framework.authentication.TokenAuthentication', #토큰도 가능하게 일단
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
     # Use Django's standard `django.contrib.auth` permissions,
@@ -121,6 +122,14 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
+}
+
+JWT_AUTH = {
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
 }
 
 AUTH_USER_MODEL = 'Account.Profile' #유저 모델로 사용하기
@@ -133,7 +142,7 @@ REST_AUTH_REGISTER_SERIALIZERS = { 'REGISTER_SERIALIZER': 'Account.serializer.Pr
 
 ACCOUNT_ADAPTER = 'Account.adapter.CustomAccountAdapter' #마지막으로 회원가입용 SERIALIZER를 적용시켜주기 위한 단계
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+REST_USE_JWT = True
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 

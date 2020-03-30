@@ -10,8 +10,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
-
-
 class ProfileSerializer(RegisterSerializer): #RegisterSerializer를 상속받아서 수정하기 즉 오버라이팅 해서 Phone이라는 필드와 Credits라는 필드를 추가했음!
     Phone = serializers.CharField(
         required=False,

@@ -1,5 +1,7 @@
 from .models import *
 from rest_framework import serializers
+#from Account.serializer import UserSerializer # 성민이 형은 User App
+from Account.models import Profile # 성민이 형은 User App
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,6 +13,11 @@ class OptionSerializer(serializers.ModelSerializer):
         model = Option
         fields = ('id', 'options')
 
+class UserSerializer(serializers.ModelSerializer): #author 안에 있는 정보를 가져오기 위해서 TBoard랑 author로 관계가 있는 UserSerializer를 통해서 새로 만듦  
+    class Meta:
+        model = Profile
+        fields = ("id", "username", "Credit", "Phone", )     
+
 class BasketSerializer(serializers.ModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.username') #모델 author를 참조하는 곳에있는 user name을 가져옴
     
@@ -19,14 +26,17 @@ class BasketSerializer(serializers.ModelSerializer):
         fields = ('id', 'author_name', 'post',)
 
 class TBoardSerializer(serializers.ModelSerializer): #JSON으로 주는 녀석, Post를 하는 form 같은 녀석
-    author_name = serializers.ReadOnlyField(source='author.username') #모델 author를 참조하는 곳에있는 user name을 가져옴
-    option_name = serializers.SerializerMethodField()
+    author = UserSerializer(read_only=True)
+    #author_name = serializers.ReadOnlyField(source='author.username') #모델 author를 참조하는 곳에있는 user name을 가져옴
+    option_name = serializers.SerializerMethodField() #함수를 통해서 새로운 필드 값을 return 하고 싶을 경우 SerializerMethodField()를 이용
     basket_confirm = serializers.SerializerMethodField()
     images = ImageSerializer(many=True, read_only=True)
+    #ImageSerializer(many=True, read_only=True) 할 경우 many랑 꼭 확인하자.... (many를 적지 않을 경우 안보일 경우가 있다)
+    #관계로 묶여진 필드의 자세한 정보를 알고 싶을 경우 새로운 Serializer를 생성한후 해당 모델을 적용 그 후, 관계로 묶여져있는 해당 필드의 이름으로 Serializer를 묶는다
 
     class Meta:
         model = TBoard
-        fields = ('id', 'author_name', 'title', 'content', 'building', #comments로 가져온 fields도 추가가 가능하다
+        fields = ('id', 'author', 'title', 'content', 'building', #comments로 가져온 fields도 추가가 가능하다
                   'address', 'payment', 'price', 'deposit', 'area', 'option', 'option_name', 'start_rent', 'end_rent', 'images', 'basket_confirm', ) #likes_count 랑 comments_count는 model에서 property로 가져온 녀석이다
         extra_kwargs = {
             'option': {'write_only': True, } # 값을 반환해 줄 경우 사용자에게는 안보이도록 설정
